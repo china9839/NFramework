@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NFramework.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,9 @@ namespace NFramework.Test
     {
         static void Main(string[] args)
         {
+            //初始化log4g
+            LogHelper.Init();
+            LogHelper.WriteSimpleLog("hello world!!!!!!");
             Console.ReadLine();
         }
     }

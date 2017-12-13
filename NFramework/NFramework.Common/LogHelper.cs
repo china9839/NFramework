@@ -52,5 +52,47 @@ namespace NFramework.Common
                 logerror.Error(info, exp);
             }
         }
+
+        /// <summary>
+        /// 一个日志写入方法。。写入到一个txt中，按照日期分类
+        /// </summary>
+        /// <param name="logText"></param>
+        /// <param name="directPath"></param>
+        public static void WriteSimpleLog(string logText,string directPath = "")
+        {
+            StreamWriter streamWriter = null; //写文件
+            try
+            {
+                if (string.IsNullOrEmpty(directPath))
+                {
+                    directPath = Path.Combine(System.Environment.CurrentDirectory,"logs");
+                }
+                if (!Directory.Exists(directPath))   //判断文件夹是否存在，如果不存在则创建  
+                {
+                    Directory.CreateDirectory(directPath);
+                }
+                directPath += string.Format(@"\{0}.log", DateTime.Now.ToString("yyyy-MM-dd"));
+                if (streamWriter == null)
+                {
+                    streamWriter = !File.Exists(directPath) ? File.CreateText(directPath) : File.AppendText(directPath);    //判断文件是否存在如果不存在则创建，如果存在则添加。  
+                }
+                streamWriter.WriteLine("***********************************************************************");
+                streamWriter.WriteLine(DateTime.Now.ToString("HH:mm:ss"));
+                streamWriter.WriteLine("输出信息：");
+                if (logText != null)
+                {
+                    streamWriter.WriteLine(logText);
+                }
+            }
+            finally
+            {
+                if (streamWriter != null)
+                {
+                    streamWriter.Flush();
+                    streamWriter.Dispose();
+                    streamWriter = null;
+                }
+            }
+        }
     }
 }
