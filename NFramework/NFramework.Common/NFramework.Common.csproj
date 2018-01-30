@@ -56,7 +56,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -73,6 +75,7 @@
     <Compile Include="HttpHelper.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="WSHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
